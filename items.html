@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Item Info Form</h2>
+  <form id="itemForm">
+    <input type="text" name="itemName" placeholder="Item Name" required><br>
+    <input type="number" name="price" placeholder="Price" required><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="itemResponse"></p>
+
+  <!-- Link to external JS -->
+  <script src="script.js"></script>
+</body>
+</html>
