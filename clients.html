@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client List</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>All Clients</h2>
+  <table id="clientTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#clientTable tbody");
+        data.forEach(client => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${client.name}</td>
+            <td>${client.address}</td>
+            <td>${client.contact}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => console.error("Error loading data", err));
+  </script>
+</body>
+</html>
