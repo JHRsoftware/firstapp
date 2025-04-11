@@ -23,24 +23,27 @@ document.getElementById("clientForm").addEventListener("submit", function(e) {
   
 //////////////////////////////////////////////////////////////////
 
-  document.getElementById("itemForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new URLSearchParams();
-    data.append("itemName", form.itemName.value);
-    data.append("price", form.price.value);
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("itemForm");
   
-    fetch("https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec", {
-      method: "POST",
-      body: data
-    })
-    .then(res => res.text())
-    .then(response => {
-      document.getElementById("itemResponse").innerText = response;
-      form.reset();
-    })
-    .catch(error => {
-      document.getElementById("itemResponse").innerText = "Error: " + error.message;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new URLSearchParams();
+      data.append("itemName", form.itemName.value);
+      data.append("price", form.price.value);
+  
+      fetch("https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec", {
+        method: "POST",
+        body: data
+      })
+        .then(res => res.text())
+        .then(response => {
+          document.getElementById("itemResponse").innerText = response;
+          form.reset();
+        })
+        .catch(error => {
+          document.getElementById("itemResponse").innerText = "Error: " + error.message;
+        });
     });
   });
   
