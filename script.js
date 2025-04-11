@@ -22,29 +22,33 @@ document.getElementById("clientForm").addEventListener("submit", function(e) {
     });
   });
   
-//////////////////////////////////////////////////////////////////
-
-document.addEventListener("DOMContentLoaded", function () {
-    const endpoint = "https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec?action=getClients";
+/////////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", () => {
+    // 1️⃣ Your deployed Apps Script URL + action
+    const endpoint = 
+      "https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec"
+      + "?action=getClients";
   
+    // 2️⃣ Fetch the client array
     fetch(endpoint)
-      .then(response => response.json())
+      .then(res => {
+        if (!res.ok) throw new Error(res.statusText);
+        return res.json();
+      })
       .then(clients => {
         const tbody = document.querySelector("#clientTable tbody");
         clients.forEach(client => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${new Date(client.date).toLocaleString()}</td>
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
             <td>${client.name}</td>
             <td>${client.address}</td>
             <td>${client.contact}</td>
           `;
-          tbody.appendChild(row);
+          tbody.appendChild(tr);
         });
       })
-      .catch(error => {
-        console.error("Error loading clients:", error);
+      .catch(err => {
+        console.error("Error loading clients:", err);
       });
   });
-  
   
