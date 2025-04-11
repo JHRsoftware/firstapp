@@ -3,6 +3,7 @@ document.getElementById("clientForm").addEventListener("submit", function(e) {
   
     const form = e.target;
     const data = new URLSearchParams();
+    data.append("action", "saveClient"); // ✅ Add this line!
     data.append("name", form.name.value);
     data.append("address", form.address.value);
     data.append("contact", form.contact.value);
