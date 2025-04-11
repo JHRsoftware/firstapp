@@ -16,42 +16,11 @@
 </head>
 <body>
   <h2>Client Info Form</h2>
-  <form id="clientForm">
+  <form action="https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec" method="post">
     <input type="text" name="name" placeholder="Name" required><br>
     <input type="text" name="address" placeholder="Address" required><br>
     <input type="text" name="contact" placeholder="Contact Number" required><br>
     <button type="submit">Submit</button>
   </form>
-
-  <script>
-    document.getElementById("clientForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        name: form.name.value,
-        address: form.address.value,
-        contact: form.contact.value
-      };
-
-      fetch("YOUR_WEB_APP_URL", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => res.text())
-      .then(response => {
-        alert("✅ " + response);
-        form.reset();
-      })
-      .catch(error => {
-        console.error("Error!", error.message);
-        alert("❌ Something went wrong!");
-      });
-    });
-  </script>
 </body>
-<script src="script.js"></script>
-
 </html>
