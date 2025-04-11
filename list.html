@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Item</title>
+</head>
+<body>
+  <h2>Add Item</h2>
+  <form id="itemForm">
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" required><br><br>
+    
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required><br><br>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("itemForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const data = {
+        itemName: form.itemName.value,
+        price: form.price.value
+      };
+
+      fetch('https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.text())
+      .then(response => {
+        alert(response);
+        form.reset(); // Reset form after submission
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>
