@@ -34,22 +34,6 @@
     <tbody></tbody>
   </table>
 
-  <script>
-    fetch('https://script.google.com/macros/s/AKfycbxe6LjyikzwB0aPInQvd1lEXZqrBQZT2ylB00AMSbb87vXsILLC8HSqu4p-mF_E0JuL/exec')
-      .then(res => res.json())
-      .then(data => {
-        const tbody = document.querySelector("#clientTable tbody");
-        data.forEach(client => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${client.name}</td>
-            <td>${client.address}</td>
-            <td>${client.contact}</td>
-          `;
-          tbody.appendChild(row);
-        });
-      })
-      .catch(err => console.error("Error loading data", err));
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
